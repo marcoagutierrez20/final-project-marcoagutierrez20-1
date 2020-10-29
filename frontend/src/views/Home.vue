@@ -1,18 +1,49 @@
 <template>
   <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <MainPage v-for="(pokemon, p ) in pokemons" :key="p" :pokemon="pokemon"/>
   </div>
 </template>
 
+
 <script>
+
 // @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
+import Pokedex from 'pokedex-promise-v2';
+import MainPage from '@/components/MainPage.vue'
 
 export default {
   name: 'Home',
   components: {
-    HelloWorld
+    MainPage
+  },
+
+  data: function() {
+    return {
+      pokemons: []
+    }
+  },
+
+  mounted() {
+    this.getPokemon();
+  },
+
+  methods: {
+    getPokemon() {
+      let P = new Pokedex();
+      var i;
+      let id = 1;
+
+      for (i = 0; i < 9; i++) {
+      P.resource([`/api/v2/pokemon/${id}`])
+        .then((resp) => {
+          this.pokemons.push(resp);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
+        id++
+      }
+    }
   }
 }
 </script>
