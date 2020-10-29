@@ -1,11 +1,6 @@
 <template>
   <div class="home">
     <h1> Welcome to the pokemon Library! </h1>
-    <div class ="home">
-      <h3> Add a pokmeon to the Library </h3>
-      <input type="text" placeholder="search by name" v-model="name">
-      <button type="button" @click="addPokemon()"/>
-    </div>
     <Pokemon v-for="(pokemon, p ) in pokemons" :key="p" :pokemon="pokemon"/>
   </div>
 </template>

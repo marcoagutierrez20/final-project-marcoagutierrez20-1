@@ -5,7 +5,9 @@
       {{pokemon[0].name}}
       {{pokemon[0].height}}
       {{pokemon[0].weight}}
-      <img :src="`${pokemon[0].sprites.front_default}`" alt='my image'>
+      <router-link :to="{name: 'PokeInfo', params: {id: pokemon.id}}">  
+        <img :src="`${pokemon[0].sprites.front_default}`" alt='my image'>
+      </router-link>  
     </div>
     
   </div>
@@ -16,6 +18,17 @@ export default {
   name: 'Pokemon',
   props: {
     pokemon: Array,
+  },
+  data: function() {
+    return {
+      id: 0
+    }
+  },
+  methods: {
+    getId() {
+      this.id = this.pokemon[0].id;
+      console.log(this.id);
+    }
   }
 }
 </script>
