@@ -7,12 +7,13 @@
       {{pokemon[0].weight}}
       <img :src="`${pokemon[0].sprites.front_default}`" alt='my image'>
     </div>
+    
   </div>
 </template>
 
 <script>
 export default {
-  name: 'MainPage',
+  name: 'Pokemon',
   props: {
     pokemon: Array,
   }
