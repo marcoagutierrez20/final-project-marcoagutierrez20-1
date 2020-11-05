@@ -1,5 +1,7 @@
 const express = require('express'),
-    axios = require('axios');
+    pkg = require('./package.json'),    
+    axios = require('axios'),
+    sqlService = require('./services/SqlService');
 
 const config = {
     port: 8081,
@@ -19,6 +21,10 @@ app.get('/api/hello/:name', (req, res) => {
                         + req.params.name.substring(1) + " it's nice to meet you!"
     })
 });
+
+app.get('/api/version', (req, resp) => {
+    resp.json({version: pkg.version});
+})
 
 
 

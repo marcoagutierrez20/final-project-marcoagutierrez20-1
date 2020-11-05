@@ -28,14 +28,12 @@ export default {
 
   mounted() {
     this.getPokemon();
-    console.log(this.pokemons)
-    //console.log(this.pokemons)
   },
 
   methods: {
       getPokemon() {
       let P = new Pokedex();
-      var i;
+      let i;
       let id = 1;
       for (i = 0; i < 3; i++) {
       P.resource([`/api/v2/pokemon/${id}`])
