@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
-import About from '../views/About.vue'
+import Library from '../views/Library.vue'
 
 Vue.use(VueRouter)
 
@@ -12,13 +12,13 @@ const routes = [
     component: Home
   },
   {
-    path: '/about',
-    name: 'About',
-    component: About
+    path: '/Library',
+    name: 'Library',
+    component: Library
   },{
     //Path that will let users look at more information about the pokemon.
-    path: '/pokemon/:id',
-    name: 'PokeInfo',
+    path: '/Pokemon/:id',
+    name: 'Pokemon',
     component: () => import(/* webpackChunkName: "bundle" */ '../views/ViewPokemon.vue')
   }
 ]

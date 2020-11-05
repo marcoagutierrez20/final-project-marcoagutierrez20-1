@@ -1,33 +1,39 @@
 <template>
-  <div class="home">
-    <h1> Here's some more information </h1>
+  <div class="viewPokemon">
+    <h2>Here is some more information about {{pokemons[pokemon][0].name}}</h2>
+    <img :src="`${pokemons[pokemon][0].sprites.front_default}`" alt='my image'>
+    <ul>
+      <li>Weight: {{pokemons[pokemon][0].weight}}</li>
+      <li>Height: {{pokemons[pokemon][0].height}}</li>
+    </ul>
   </div>
 </template>
 
-
 <script>
-// @ is an alias to /src
 import Pokedex from 'pokedex-promise-v2';
+// @ is an alias to /src
 
 export default {
-  name: 'Home',
+  name: 'ViewPokemon',
   components: {
     
   },
-  data: function() {
+
+  data() {
     return {
       pokemons: [],
-      name: ''
+      pokemon: this.$route.params.id-1
     }
   },
+
   mounted() {
-    this.isNew = !this.$route.params.id;
-    if (!this.isNew) {
-      this.getPokemon();
-    }
+    this.getPokemon();
+    console.log(this.pokemons)
+    //console.log(this.pokemons)
   },
+
   methods: {
-    getPokemon() {
+      getPokemon() {
       let P = new Pokedex();
       var i;
       let id = 1;
@@ -42,21 +48,13 @@ export default {
         id++
       }
     },
-  }
+  },
 }
-
 </script>
 
-<style >
-.button {
-  border: none;
-  color: white;
-  padding: 15px 32px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  margin: 4px 2px;
-  cursor: pointer;
+<style scoped>
+li{
+  list-style-type: none;
 }
-</style>
+</style>>
+
