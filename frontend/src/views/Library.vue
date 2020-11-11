@@ -1,22 +1,18 @@
 <template>
   <div class="library">
     <h1>Pokemon Library</h1>
-    <h3 v-for="pokemon in pokemons" :key="pokemon.id">
-      <router-link :to="{name: 'Pokemon', params:{id: pokemon[0].id}}">
-        {{pokemon[0].name}}
-      </router-link>
-    </h3>
+    <Pokemon v-for="pokemon in pokemons" :key="pokemon.id" :pokemons="pokemon"></Pokemon>
   </div>
 </template>
 
 <script>
 import Pokedex from 'pokedex-promise-v2';
-//import Pokemon from '@/components/Pokemon.vue'
+import Pokemon from '@/components/Pokemon.vue'
 
 export default {
   name: 'Library',
   components: {
-    //Pokemon
+    Pokemon,
   },
   data()  {
     return {

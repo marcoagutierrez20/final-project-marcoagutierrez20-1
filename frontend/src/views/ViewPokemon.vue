@@ -1,28 +1,23 @@
 <template>
   <div class="viewPokemon">
-    <h2>Here is some more information about {{pokemons[pokemon][0].name}}</h2>
-    <img :src="`${pokemons[pokemon][0].sprites.front_default}`" alt='my image'>
-    <ul>
-      <li>Weight: {{pokemons[pokemon][0].weight}}</li>
-      <li>Height: {{pokemons[pokemon][0].height}}</li>
-    </ul>
+    <PokemonView v-bind:pokemons="this.pokemons" v-bind:pokemon="this.pokemon"></PokemonView>
   </div>
 </template>
 
 <script>
 import Pokedex from 'pokedex-promise-v2';
-// @ is an alias to /src
+import PokemonView from '@/components/PokemonView.vue'
 
 export default {
   name: 'ViewPokemon',
   components: {
-    
+    PokemonView,
   },
 
   data() {
     return {
       pokemons: [],
-      pokemon: this.$route.params.id-1
+      pokemon: this.$route.params.id-1,
     }
   },
 
@@ -50,9 +45,7 @@ export default {
 }
 </script>
 
-<style scoped>
-li{
-  list-style-type: none;
-}
-</style>>
+<style lang="scss" scoped>
+
+</style>
 
