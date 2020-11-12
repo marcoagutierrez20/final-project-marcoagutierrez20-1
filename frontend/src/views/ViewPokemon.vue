@@ -6,7 +6,8 @@
 
 <script>
 import Pokedex from 'pokedex-promise-v2';
-import PokemonView from '@/components/PokemonView.vue'
+import PokemonView from '@/components/PokemonView.vue';
+
 
 export default {
   name: 'ViewPokemon',
