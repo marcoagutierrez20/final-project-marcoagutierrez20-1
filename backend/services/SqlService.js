@@ -12,19 +12,33 @@ class SqlService {
             password: process.env.DB_PASSWORD,
             database: 'it339'
         })
-
-        this.creatTestTable();
+        this.creatPokemonTable();
     }
 
-    creatTestTable() {
-        this.connection.query(`CREATE TABLE IF NOT EXISTS test (
+    creatPokemonTable() {
+        this.connection.query(`CREATE TABLE IF NOT EXISTS pokemon (
             id INT NOT NULL AUTO_INCREMENT,
+            pokemonId INT NOT NUll UNIQUE,
             name VARCHAR(100) NOT NULL,
-            description VARCHAR(255) NOT NULL,
+            weight int NOT NULL,
+            height int NOT NULL,
+            sprite VARCHAR(250) NOT NULL,
             PRIMARY KEY (id)
         )`, (error, results, field) => {
             //console.log(error, results, field)
         });
+    }
+
+    addPokemon(pokemon, callback) {
+        this.connection.query(`INSERT INTO pokemon SET ?`, pokemon, callback);
+    }
+
+    getPokemons(callback) {
+        this.connection.query(`SELECT * FROM pokemon`, callback);
+    }
+
+    getPokemon(name, callback) {
+        this.connection.query(`SELECT * FROM pokemon WHERE name = ?`, [name], callback);
     }
 }
 

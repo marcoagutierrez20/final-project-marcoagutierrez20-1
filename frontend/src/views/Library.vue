@@ -17,11 +17,13 @@ export default {
   data()  {
     return {
       pokemons: [],
+      pokemonsTwo: []
     }
   },
 
   mounted() {
     this.getPokemon();
+    this.getPokemonTwo();
   },
   
   methods: {
@@ -39,6 +41,20 @@ export default {
         });
         id++
       }
+    },
+  getPokemonTwo() {
+      let P = new Pokedex();
+      let interval = {
+        limit: 20,
+        offset: 0
+        }
+      P.getPokemonsList(interval)
+        .then((resp) => {
+          this.pokemonsTwo.push(resp);
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
     }
   }
 }

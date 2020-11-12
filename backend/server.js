@@ -35,14 +35,9 @@ app.use(function (req, res, next) {
     next();
   });
 
-app.get('/api/hello/:name', (req, res) => {
-    //console.log(req);
-    res.json({
-        "name": req.params.name,
-        "greeting":  "Hello there " +  req.params.name[0].toUpperCase() 
-                        + req.params.name.substring(1) + " it's nice to meet you!"
-    })
-});
+app.use(express.json());
+
+require('./lib/pokemon')(app);
 
 app.get('/api/version', (req, resp) => {
     resp.json({version: pkg.version});
