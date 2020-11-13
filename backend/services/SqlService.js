@@ -22,7 +22,9 @@ class SqlService {
             name VARCHAR(100) NOT NULL,
             weight int NOT NULL,
             height int NOT NULL,
-            sprite VARCHAR(250) NOT NULL,
+            type VARCHAR(100) NOT NULL,
+            frontSprite VARCHAR(250) NOT NULL,
+            backSprite VARCHAR(250) NOT NULL,
             PRIMARY KEY (id)
         )`, (error, results, field) => {
             //console.log(error, results, field)
@@ -39,6 +41,10 @@ class SqlService {
 
     getPokemon(name, callback) {
         this.connection.query(`SELECT * FROM pokemon WHERE name = ?`, [name], callback);
+    }
+
+    getPokemonSet(number, callback) {
+        this.connection.query(`SELECT * FROM pokemon WHERE pokemonId = ?`, [number], callback);
     }
 }
 

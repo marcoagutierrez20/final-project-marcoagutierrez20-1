@@ -62,15 +62,23 @@ export default {
       "name": String,
       "weight": Number,
       "height": Number,
-      "sprite": String
+      "type": String,
+      "frontSprite": String,
+      "backSprite": String
     };
-    P.resource(['/api/v2/pokemon/7'])
-      .then( resp => {
+    var i;
+    let id = 1;
+    if(!this.pokemonsTwo) {
+      for (i = 0; i < 895; i++) {
+        P.resource([`/api/v2/pokemon/${id}`])
+        .then( resp => {
         pokemon["pokemonId"] = resp[0].id;
         pokemon["name"] = resp[0].name; 
         pokemon["weight"] = resp[0].weight; 
         pokemon["height"] = resp[0].height; 
-        pokemon["sprite"] = resp[0].sprites.front_default;
+        pokemon["type"] = resp[0].types[0].type.name; 
+        pokemon["frontSprite"] = resp[0].sprites.front_default;
+        pokemon["backSprite"] = resp[0].sprites.back_default;
         axios.post('http://localhost:8081/api/pokemon', pokemon)
         .then(response => {
           console.log(response)
@@ -79,9 +87,9 @@ export default {
           console.log(error.response)
         })
         })
-        .catch( error => {
-          console.log(error);
-        })
+        id++
+      }
+    }
     }
   }
 }

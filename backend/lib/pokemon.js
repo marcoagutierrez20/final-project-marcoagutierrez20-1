@@ -31,4 +31,14 @@ module.exports = app => {
         resp.json(results);
         });
     });
+
+    app.get('/api/pokemons/pokemon/:number', (req, resp) => {
+      sqlService.getPokemonSet(req.params.number, (err, results) => {
+        if (err) {
+          return resp.status(500).json(err);
+        }
+  
+      resp.json(results);
+      });
+  });
 }
