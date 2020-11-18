@@ -2,94 +2,47 @@
   <div class="library">
     <h1>Pokemon Library</h1>
     <Pokemon v-for="pokemon in pokemons" :key="pokemon.id" :pokemons="pokemon"></Pokemon>
+    <button @click="addMore">Load more!</button>
   </div>
 </template>
 
 <script>
-import Pokedex from 'pokedex-promise-v2';
 import Pokemon from '@/components/Pokemon.vue';
 import axios from 'axios'
 
 export default {
   name: 'Library',
   components: {
-    Pokemon,
+    Pokemon
   },
   data()  {
     return {
       pokemons: [],
-      pokemonsTwo: []
+      id: 0,
+      counter: 6
     }
   },
 
   mounted() {
     this.getPokemon();
-    this.getPokemonTwo();
-    this.addPokemon();
   },
-  
-  methods: {
-  getPokemon() {
-      let P = new Pokedex();
-      let i;
-      let id = 1;
-      for (i = 0; i < 3; i++) {
-      P.resource([`/api/v2/pokemon/${id}`])
-        .then((resp) => {
-          this.pokemons.push(resp);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-        id++
-      }
-    },
 
-  getPokemonTwo() {
-      axios.get('http://localhost:8081/api/pokemons')
+  methods: {
+
+  getPokemon() {
+    for (this.id; this.id < this.counter; this.id++)
+      axios.get(`http://localhost:8081/api/pokemons/pokemon/${this.id}`, ) 
         .then( (resp) => {
-          this.pokemonsTwo.push(resp.data);
+          this.pokemons.push(resp.data);
         })
         .catch(function(error) {
           console.log(error);
         })
     },
 
-  addPokemon() {
-    let P = new Pokedex();
-    let pokemon = {
-      "pokemonId": Number,
-      "name": String,
-      "weight": Number,
-      "height": Number,
-      "type": String,
-      "frontSprite": String,
-      "backSprite": String
-    };
-    var i;
-    let id = 1;
-    if(!this.pokemonsTwo) {
-      for (i = 0; i < 895; i++) {
-        P.resource([`/api/v2/pokemon/${id}`])
-        .then( resp => {
-        pokemon["pokemonId"] = resp[0].id;
-        pokemon["name"] = resp[0].name; 
-        pokemon["weight"] = resp[0].weight; 
-        pokemon["height"] = resp[0].height; 
-        pokemon["type"] = resp[0].types[0].type.name; 
-        pokemon["frontSprite"] = resp[0].sprites.front_default;
-        pokemon["backSprite"] = resp[0].sprites.back_default;
-        axios.post('http://localhost:8081/api/pokemon', pokemon)
-        .then(response => {
-          console.log(response)
-        })
-        .catch(error => {
-          console.log(error.response)
-        })
-        })
-        id++
-      }
-    }
+    addMore() {
+      this.counter += 6
+      this.getPokemon();
     }
   }
 }

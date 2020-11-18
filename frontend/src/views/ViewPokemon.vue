@@ -5,9 +5,8 @@
 </template>
 
 <script>
-import Pokedex from 'pokedex-promise-v2';
 import PokemonView from '@/components/PokemonView.vue';
-
+import axios from 'axios'
 
 export default {
   name: 'ViewPokemon',
@@ -27,20 +26,14 @@ export default {
   },
 
   methods: {
-      getPokemon() {
-      let P = new Pokedex();
-      let i;
-      let id = 1;
-      for (i = 0; i < 3; i++) {
-      P.resource([`/api/v2/pokemon/${id}`])
-        .then((resp) => {
-          this.pokemons.push(resp);
+  getPokemon() {
+      axios.get('http://localhost:8081/api/pokemons')
+        .then( (resp) => {
+          this.pokemons.push(resp.data);
         })
-        .catch(function (error) {
+        .catch(function(error) {
           console.log(error);
-        });
-        id++
-      }
+        })
     },
   },
 }

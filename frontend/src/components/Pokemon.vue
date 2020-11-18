@@ -1,10 +1,12 @@
 <template>
   <div class="Pokemon">
-    <h3>
-      <router-link :to="{name: 'Pokemon', params:{id: pokemons[0].id}}">
-        {{pokemons[0].name}}
-      </router-link>
-    </h3>
+
+     <ul v-for="pokemon in pokemons" :key="pokemon.id" :pokemons="pokemon">
+       <router-link :to="{name: 'Pokemon', params:{id: pokemon.id}}">
+       <li> {{pokemon.name}}</li>
+       </router-link>
+    </ul>
+
   </div>
 </template>
 

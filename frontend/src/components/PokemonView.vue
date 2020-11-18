@@ -1,10 +1,10 @@
 <template>
   <div class="PokemonView">
-    <h2>Here is some more information about {{pokemons[pokemon][0].name}}</h2>
-    <img :src="`${pokemons[pokemon][0].sprites.front_default}`" alt='my image'>
+    <h2>Here is some more information about {{pokemons[0][pokemon].name}}</h2>
+    <img :src="`${pokemons[0][pokemon].frontSprite}`" alt='my image'>
     <ul>
-      <li>Weight: {{pokemons[pokemon][0].weight}}</li>
-      <li>Height: {{pokemons[pokemon][0].height}}</li>
+      <li>Weight: {{pokemons[0][pokemon].weight}}</li>
+      <li>Height: {{pokemons[0][pokemon].height}}</li>
     </ul>
   </div>
 </template>

@@ -2,7 +2,6 @@
 
 const express = require('express'),
     pkg = require('./package.json'),    
-    axios = require('axios'),
     sqlService = require('./services/SqlService');
 
 require('dotenv').config()
