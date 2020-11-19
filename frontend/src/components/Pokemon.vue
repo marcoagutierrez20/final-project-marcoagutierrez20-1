@@ -1,12 +1,10 @@
 <template>
   <div class="Pokemon">
-
-     <ul v-for="pokemon in pokemons" :key="pokemon.id" :pokemons="pokemon">
-       <router-link :to="{name: 'Pokemon', params:{id: pokemon.id}}">
-       <li> {{pokemon.name}}</li>
-       </router-link>
-    </ul>
-
+      <div class="poke-list" v-for="(pokemon, i) in pokemons" :key="i">
+        <router-link :to="{name: 'Pokemon', params:{id: pokemon.id}}">
+          <img :src="`${pokemon.frontSprite}`" alt='my image'>
+        </router-link>
+      </div>
   </div>
 </template>
 
@@ -21,6 +19,16 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style lang="scss" scoped>
+.Pokemon {
+  box-sizing: border-box;
+  margin: 1rem .25em;
+}
+
+.poke-list {
+  width: 200px;
+  height: 100px;
+  background: rgb(36, 18, 119)
+}
 
 </style>
 

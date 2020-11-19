@@ -1,9 +1,39 @@
 <template>
   <div class="home">
-    <h1> Welcome to the pokemon Library!</h1>
-    <h4> Search for a pokemon </h4>
-    <input v-model="search" placeholder="pokemon name"/>
-    <button @click="getByName"> Search! </button>
+    <div class="columns is-mobile"> <!--Start of first Column-->
+      <div class="column"> <!-- first row of Column-->
+        <h1> Welcome to the pokemon Library!</h1>
+          <div class="column"> <!--second row of column-->
+            <p>If you looking for quick information about a specific pokemon feel free to search for it down below!</p>
+          </div>
+          <div class="column"> <!--third row of column-->
+            <h4> Search for a pokemon </h4>
+            <input v-model="search" placeholder="pokemon name" class="input" type="text"/>
+            <button class="button" @click="getByName"> Search! </button>
+          </div>
+          <div class="column" v-if="pokemon.length"> <!--fourth row of column-->
+          <template v-if="pokemon.length">
+            <div class="card"> <!--Start of pokemon card-->
+              <div class="card-image">
+                <figure class="image is-128x128">
+                  <img :src="`${pokemon[0].frontSprite}`" alt="my image">
+                </figure>
+              </div>
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-left">
+                    <figure class="image is 48x48">
+                      <img :src="`${pokemon[0].backSprite}`" alt="my image">
+                    </figure>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+          <p v-else></p>
+          </div>
+      </div>
+    </div>
   </div>
 </template>
 
@@ -84,7 +114,7 @@ export default {
           })
           })
           id++
-        }
+      }
     }
   }
 }
