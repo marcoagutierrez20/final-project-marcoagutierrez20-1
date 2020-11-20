@@ -1,8 +1,11 @@
 <template>
-  <div class="library">
-    <Pokemon v-for="pokemon in pokemons" :key="pokemon.id" :pokemons="pokemon"></Pokemon>
-    <button class="button" @click="addMore">Load more!</button>
-  </div>
+<div class="library">
+  <h1>Click on a pokemon to learn more about it!</h1>
+    <div class="display">
+      <Pokemon v-for="pokemon in pokemons" :key="pokemon.id" :pokemons="pokemon"></Pokemon>
+    </div>
+  <button class="button" @click="addMore">Load more</button>
+</div>
 </template>
 
 <script>
@@ -48,27 +51,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.library{
+.library {
+  color: white;
+  background-color: rgb(255, 0, 0);
+}
+.display{
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
-    
 }
 .button {
-    margin: 3rem auto;
-    background: #333;
-    color: #FFF;
-    border-radius: 6px;
-    font-size: 1.2rem;
-    text-transform: uppercase;
-    padding: 1rem 1.6rem;
-    box-sizing: border-box;
-    margin: 1rem .25em;
-    cursor: pointer;
-
-    &:hover {
-      background: #444;
-    }
-
+    color: rgb(255, 0, 0);
+    background-color: rgb(255, 255, 255);
+    margin-top: 15px;
 }
 </style>

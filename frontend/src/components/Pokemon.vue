@@ -22,12 +22,11 @@ export default {
 .Pokemon {
   box-sizing: border-box;
   margin: 1rem .25em;
+  margin-top: 50px;
 }
-
 .poke-list {
   width: 200px;
   height: 100px;
-  background: rgb(36, 18, 119)
 }
 
 </style>

@@ -1,37 +1,51 @@
 <template>
   <div class="home">
-    <div class="columns is-mobile"> <!--Start of first Column-->
+    <div class="columns is-mobile is-centered"> <!--Start of first Column-->
       <div class="column"> <!-- first row of Column-->
         <h1> Welcome to the pokemon Library!</h1>
           <div class="column"> <!--second row of column-->
-            <p>If you looking for quick information about a specific pokemon feel free to search for it down below!</p>
+            <p>If you looking for quick information about a specific pokemon feel free to search for it down below.</p>
+            <p>Or check out our <router-link class="router-link"  to="/Library">library</router-link> to view our collection of pokemon. </p>
           </div>
           <div class="column"> <!--third row of column-->
-            <h4> Search for a pokemon </h4>
+            <h4> Pokemon Search</h4>
             <input v-model="search" placeholder="pokemon name" class="input" type="text"/>
-            <button class="button" @click="getByName"> Search! </button>
+            <button class="button" @click="getByName">Search</button>
           </div>
-          <div class="column" v-if="pokemon.length"> <!--fourth row of column-->
-          <template v-if="pokemon.length">
-            <div class="card"> <!--Start of pokemon card-->
-              <div class="card-image">
+          <div class="column" v-if="typeof this.pokemon[0] != undefined"> <!--fourth row of column-->
+          <template v-if="this.pokemon.length > 0 && typeof this.pokemon[0] != undefined">
+            <div class="card column is-half is-offset-one-quarter"> <!--Start of pokemon card-->
+              <div class="card-image column is-half is-offset-one-quarter">
                 <figure class="image is-128x128">
                   <img :src="`${pokemon[0].frontSprite}`" alt="my image">
                 </figure>
               </div>
-              <div class="card-content">
+              <div class="card-content column is-half is-offset-one-quarter ">
                 <div class="media">
                   <div class="media-left">
                     <figure class="image is 48x48">
                       <img :src="`${pokemon[0].backSprite}`" alt="my image">
                     </figure>
                   </div>
+                  <div class="media-content">
+                    <p class="title is-4">{{pokemon[0].name}}</p>
+                    <span class="title is-6">ID: {{pokemon[0].pokemonId}}</span>
+                    <br>
+                    <span class="title is-6">Type: {{pokemon[0].type}}</span>
+                    <br>
+                    <span class="title is-6">Height: {{pokemon[0].height}}</span>
+                    <br>
+                    <span class="title is-6">Weight: {{pokemon[0].weight}}</span>
+                  </div>
                 </div>
               </div>
             </div>
           </template>
-          <p v-else></p>
-          </div>
+          <template v-else>
+            <h6>Search is not case sensitive.</h6>
+            <h6>Make sure to type name correctly!</h6>
+          </template>
+        </div>
       </div>
     </div>
   </div>
@@ -121,5 +135,34 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.column {
+  background-color: rgb(255, 0, 0);
+  color: rgb(255, 255, 255);
+}
+.card {
+  box-shadow: none;
+}
+.title {
+  color: rgb(255, 255, 255);
+}
 
+.button { 
+  padding: 10px;
+  margin-top: 10px;
+  color: rgb(255, 0, 0);
+}
+
+.button:hover {
+
+  transform: translateY(4px);
+}
+.input {
+  margin-top: 5px;
+}
+.router-link {
+    color: white;
+}
+.router-link:hover{
+  color: blue;
+}
 </style>

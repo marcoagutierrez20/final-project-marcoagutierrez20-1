@@ -23,6 +23,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: rgb(0, 0, 0);
+  font-size: 20px;
+
 }
 #nav {
   padding: 25px;
