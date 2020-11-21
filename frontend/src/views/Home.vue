@@ -62,15 +62,13 @@ export default {
     return {
       pokemons: [],
       search: "",
-      pokemon: []
+      pokemon: [],
+      error: []
     }
   },
 
-  created() {
-    this.addPokemon();
-  },
-
   mounted() {
+    this.addPokemon();
     this.getPokemon();
   },
 
@@ -124,7 +122,9 @@ export default {
             console.log(response.data)
           })
           .catch(error => {
-            console.log(error.response.data)
+            if(error) {
+              return
+            }
           })
           })
           id++
