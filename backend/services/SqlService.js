@@ -36,7 +36,7 @@ class SqlService {
     }
 
     getPokemons(callback) {
-        this.connection.query(`SELECT * FROM pokemon`, callback);
+        this.connection.query(`SELECT * from pokemon ORDER BY pokemonId`, callback);
     }
 
     getPokemon(name, callback) {

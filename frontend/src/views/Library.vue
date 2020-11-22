@@ -33,7 +33,7 @@ export default {
 
   getPokemon() {
     for (this.id; this.id < this.counter; this.id++)
-      axios.get(`http://localhost:8081/api/pokemons/pokemon/${this.id}`, ) 
+      axios.get(`${this.$apiUrl}/api/pokemons/pokemon/${this.id}`, ) 
         .then( (resp) => {
           this.pokemons.push(resp.data);
         })

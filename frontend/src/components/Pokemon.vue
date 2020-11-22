@@ -1,7 +1,7 @@
 <template>
   <div class="Pokemon">
       <div class="poke-list" v-for="(pokemon, i) in pokemons" :key="i">
-        <router-link :to="{name: 'Pokemon', params:{id: pokemon.id}}">
+        <router-link :to="{name: 'Pokemon', params:{id: pokemon.pokemonId}}">
           <img :src="`${pokemon.frontSprite}`" alt='my image'>
         </router-link>
       </div>

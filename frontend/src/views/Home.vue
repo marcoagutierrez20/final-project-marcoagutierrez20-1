@@ -43,7 +43,7 @@
           </template>
           <template v-else>
             <h6>Search is not case sensitive.</h6>
-            <h6>Make sure to type name correctly!</h6>
+            <h6>Make sure to type the name correctly!</h6>
           </template>
         </div>
       </div>
@@ -62,20 +62,18 @@ export default {
     return {
       pokemons: [],
       search: "",
-      pokemon: [],
-      error: []
+      pokemon: []
     }
   },
 
-  mounted() {
-    this.addPokemon();
-    this.getPokemon();
+  async mounted() {
+     await this.getPokemon();
   },
 
 
   methods: {
-    getPokemon() {
-    axios.get('http://localhost:8081/api/pokemons', ) 
+  async getPokemon() {
+    await axios.get(`${this.$apiUrl}/api/pokemons`, ) 
       .then( (resp) => {
         this.pokemons.push(resp.data);
       })
@@ -85,15 +83,14 @@ export default {
     },
 
     getByName() {
-      axios.get(`http://localhost:8081/api/pokemon/${this.search}`, )
+      axios.get(`${this.$apiUrl}/api/pokemon/${this.search}`, )
         .then( response => {
           this.pokemon.unshift(response.data[0])
         })
         .catch( error => {
-          console.log(error);
+          return error;
         })
     },
-
     addPokemon() {
     let P = new Pokedex();
     let pokemon = {
@@ -107,8 +104,9 @@ export default {
     };
       let i;
       let id = 1;
-      for (i = 0; i < 895; i++) {
-        P.resource([`/api/v2/pokemon/${id}`])
+      if(!this.pokemons.legnth) {
+      for (i = 0; i < 893; i++) {
+      P.resource([`/api/v2/pokemon/${id}`])
         .then( resp => {
         pokemon["pokemonId"] = resp[0].id;
         pokemon["name"] = resp[0].name; 
@@ -117,17 +115,16 @@ export default {
         pokemon["type"] = resp[0].types[0].type.name; 
         pokemon["frontSprite"] = resp[0].sprites.front_default;
         pokemon["backSprite"] = resp[0].sprites.back_default;
-        axios.post('http://localhost:8081/api/pokemon', pokemon)
+        axios.post(`${this.$apiUrl}/api/pokemon`, pokemon)
           .then(response => {
             console.log(response.data)
           })
           .catch(error => {
-            if(error) {
-              return
-            }
+            console.log(error);
           })
           })
           id++
+      }
       }
     }
   }

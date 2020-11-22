@@ -27,7 +27,7 @@ export default {
 
   methods: {
   getPokemon() {
-      axios.get('http://localhost:8081/api/pokemons')
+      axios.get(`${this.$apiUrl}/api/pokemons`)
         .then( (resp) => {
           this.pokemons.push(resp.data);
         })

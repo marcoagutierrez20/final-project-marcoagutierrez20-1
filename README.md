@@ -11,3 +11,8 @@ Similar to what we have done in class I want to build a library or wiki page on 
 - Create a front end to display that data in a creative way. 
 - Allow for data to be added/changed on the front end and make those changes accross the full application. 
 
+# Done
+
+- Site is live via http://pokelib.live/#/
+- Overall I did not acomplish all I wanted to do. I don't have a way for data to be edited and chagned accross the application. 
+- But I am happy that I was able to build an app and host it online. I hadn't done this before and it was a good learning experience. 
